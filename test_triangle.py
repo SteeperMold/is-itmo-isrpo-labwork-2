@@ -10,6 +10,10 @@ class TriangleTestCase(unittest.TestCase):
     def test_perimeter(self):
         self.assertEqual(perimeter(3, 4, 5), 12)
 
+    def test_fractional_values(self):
+        self.assertAlmostEqual(area(2.5, 3.5), 4.375)
+        self.assertAlmostEqual(perimeter(2.5, 3.5, 4.5), 10.5)
+
     def test_zero_height(self):
         self.assertEqual(area(6, 0), 0)
 
@@ -35,6 +39,14 @@ class TriangleTestCase(unittest.TestCase):
     def test_string_base(self):
         with self.assertRaises(TypeError):
             area("abc", 4)
+
+    def test_complex_base_area(self):
+        with self.assertRaises(TypeError):
+            area(2 + 3j, 4)
+
+    def test_complex_side_perimeter(self):
+        with self.assertRaises(TypeError):
+            perimeter(3, 2 + 3j, 5)
 
 
 if __name__ == "__main__":

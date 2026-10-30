@@ -10,6 +10,10 @@ class SquareTestCase(unittest.TestCase):
     def test_perimeter(self):
         self.assertEqual(perimeter(5), 20)
 
+    def test_fractional_side(self):
+        self.assertAlmostEqual(area(2.5), 6.25)
+        self.assertAlmostEqual(perimeter(2.5), 10.0)
+
     def test_zero_side(self):
         self.assertEqual(area(0), 0)
         self.assertEqual(perimeter(0), 0)
@@ -25,6 +29,14 @@ class SquareTestCase(unittest.TestCase):
     def test_string_side(self):
         with self.assertRaises(TypeError):
             area("abc")
+
+    def test_complex_side_area(self):
+        with self.assertRaises(TypeError):
+            area(2 + 3j)
+
+    def test_complex_side_perimeter(self):
+        with self.assertRaises(TypeError):
+            perimeter(2 + 3j)
 
 
 if __name__ == "__main__":
